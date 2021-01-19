@@ -11,6 +11,5 @@ public class Main {
 
         UserInterface ui = new UserInterface(list, scanner);
         ui.start();
-
     }
 }
