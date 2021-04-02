@@ -28,7 +28,43 @@ public class UserInterface {
             if (command.equals("x")) {
                 break;
             }
-
+            
+            if(command.equals("1")) {
+                System.out.println("Listing the database contents");
+                if(this.database.list().isEmpty()) {
+                    continue;
+                }
+                for(Todo todo: this.database.list()) {
+                    System.out.println(todo.toString());
+                }
+                continue;
+            }
+            
+            if(command.equals("2")) {
+                System.out.println("Adding a new todo");
+                System.out.println("Enter name");
+                String name = scanner.nextLine();
+                System.out.println("Enter description");
+                String description = scanner.nextLine();
+                
+                this.database.add(new Todo(this.database.list().size(), name, description, false));
+                continue;
+            }
+            
+            if(command.equals("3")) {
+                System.out.println("Which todo should be marked as done (give the id)?");
+                int id = Integer.valueOf(scanner.nextLine());
+                
+                this.database.markAsDone(id);
+                continue;
+            }
+            
+            if(command.equals("4")) {
+                System.out.println("Which todo should be removed (give the id)?");
+                int id = Integer.valueOf(scanner.nextLine());
+                
+                this.database.remove(id);
+            }
             // implement the functionality here
         }
 

@@ -5,6 +5,6 @@ public class Program {
         // Test the MagicSquare class here
         
         MagicSquareFactory msFactory = new MagicSquareFactory();
-        System.out.println(msFactory.createMagicSquare(5));
+        System.out.println(msFactory.createMagicSquare(3));
     }
 }

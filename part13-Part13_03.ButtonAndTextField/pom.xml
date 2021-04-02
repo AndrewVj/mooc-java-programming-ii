@@ -46,6 +46,11 @@
             <version>8u76-b04</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>11</version>
+        </dependency>
     </dependencies>
    
     <build>
@@ -72,6 +77,16 @@
                 <groupId>fi.helsinki.cs.tmc</groupId>
                 <artifactId>runner-maven-plugin</artifactId>
                 <version>1.0.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.3</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                    <launcher>launcher</launcher>
+                    <mainClass>buttonandtextfield.ButtonAndTextFieldApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -123,6 +138,11 @@
                     <version>jdk-11+26</version>
                     <scope>test</scope>
                 </dependency>
+                <dependency>
+                    <groupId>org.openjfx</groupId>
+                    <artifactId>javafx-controls</artifactId>
+                    <version>11</version>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -134,7 +154,18 @@
                             <mainClass>buttonandtextfield.ButtonAndTextFieldApplication</mainClass>
                         </configuration>
                     </plugin>
+                <plugin>
+                    <groupId>org.openjfx</groupId>
+                    <artifactId>javafx-maven-plugin</artifactId>
+                    <version>0.0.3</version>
+                    <configuration>
+                        <release>${maven.compiler.release}</release>
+                        <launcher>launcher</launcher>
+                        <mainClass>buttonandtextfield.ButtonAndTextFieldApplication</mainClass>
+                    </configuration>
+                </plugin>
                 </plugins>
+
             </build>
         </profile>
     </profiles>

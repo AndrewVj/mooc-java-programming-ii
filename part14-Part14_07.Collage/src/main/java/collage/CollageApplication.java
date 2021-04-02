@@ -29,12 +29,24 @@ public class CollageApplication extends Application {
         WritableImage targetImage = new WritableImage(width, height);
         PixelWriter imageWriter = targetImage.getPixelWriter();
 
-        int yCoordinate = 0;
-        while (yCoordinate < height) {
-            int xCoordinate = 0;
-            while (xCoordinate < width) {
+        for(int y = 0; y < height; y++) {
+            for(int x = 0; x < width; x++) {
+                if(y < height/2 && x < width/2) {
+                    Color color = imageReader.getColor(x*2, y*2);
+                    double red = 1.0 - color.getRed();
+                    double green = 1.0 - color.getGreen();
+                    double blue = 1.0 - color.getBlue();
+                    double opacity = color.getOpacity();
 
-                Color color = imageReader.getColor(xCoordinate, yCoordinate);
+                    Color newColor = new Color(red, green, blue, opacity);
+                    
+                    imageWriter.setColor(x, y, newColor);
+                    imageWriter.setColor(x+width/2, y, newColor);
+                    imageWriter.setColor(x, y+height/2, newColor);
+                    imageWriter.setColor(x+width/2, y+height/2, newColor);
+                    //continue;
+                }
+                /*Color color = imageReader.getColor(x, y);
                 double red = color.getRed();
                 double green = color.getGreen();
                 double blue = color.getBlue();
@@ -42,16 +54,14 @@ public class CollageApplication extends Application {
 
                 Color newColor = new Color(red, green, blue, opacity);
 
-                imageWriter.setColor(xCoordinate, yCoordinate, newColor);
-
-                xCoordinate++;
+                imageWriter.setColor(x, y, newColor);*/
             }
-
-            yCoordinate++;
         }
 
         ImageView image = new ImageView(targetImage);
-
+        //image.setScaleX(0.50);
+        //image.setScaleY(0.50);
+        
         Pane pane = new Pane();
         pane.getChildren().add(image);
 
